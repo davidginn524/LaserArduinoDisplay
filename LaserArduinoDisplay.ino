@@ -68,7 +68,7 @@ void loop(void) {
   TX = (1 / ((ln / B) + (1 / T0))); //Temperature from thermistor
 
   TX = TX - 273.15;                 //Conversion to Celsius
-
+ 
   Serial.print("Temperature:");
   Serial.print("\t");
   Serial.print(TX);
