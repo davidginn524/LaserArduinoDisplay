@@ -1,13 +1,13 @@
-
-
 #include "U8glib.h"
-
 U8GLIB_ST7920_128X64_1X u8g(13,11,10);	// SPI Com: SCK = en = 18, MOSI = rw = 16, CS = di = 17
 //These values are in the datasheet
 #define RT0 10000   // Ω
 #define B 3977      // K
 //--------------------------------------
-
+const int RELAY_PIN0 = 3;
+const int RELAY_PIN1 = 4;
+const int RELAY_PIN2 = 5;
+const int RELAY_PIN3 = 6;
 
 #define VCC 5    //Supply voltage
 #define R 10000  //R=10KΩ
@@ -28,19 +28,41 @@ void draw(void) {
   u8g.drawStr( 0, 21, "Pump:");
   u8g.drawStr(62, 21, "L/H" );
   pumpcheck();
+  u8g.drawStr( 0, 31, "Air:");
+  aircheck();
+  u8g.drawStr( 0, 42, "Extraction:");
+  airexcheck();
+  u8g.drawStr( 0, 53, "Safety:");
+  safetycheck();
+}
+void airexcheck(void){
+  //check to make sure air extract is on, if not alarm and do not allow to fire
+  
+}
+void aircheck(void){
+  //check to make sure air is on, if not alarm and do not allow to fire
+  
+}
+void safetycheck(void){
+  //chcek to make sure all interlocks are in closed state
+    //u8g.drawStr(70, 10, "test" );
 }
 void tempcheck(void){
+  //check to make sure water temp is in range, if not alarm and do not allow to fire
     //u8g.drawStr(70, 10, "test" );
 }
 void pumpcheck(void){
+  //check to make sure water is flowing, if not alarm 
   
 }
 void setup(void) {
   // flip screen, if required
   u8g.setRot180();
-   T0 = 25 + 273.15;
-
-  
+  T0 = 25 + 273.15;
+  pinMode(RELAY_PIN0, OUTPUT);
+  pinMode(RELAY_PIN1, OUTPUT);
+  pinMode(RELAY_PIN2, OUTPUT);
+  pinMode(RELAY_PIN3, OUTPUT);
 }
 
 void loop(void) {
