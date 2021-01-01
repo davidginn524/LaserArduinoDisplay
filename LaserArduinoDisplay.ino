@@ -87,9 +87,23 @@ void tempcheck(void){
     int inttx = TX;
     Serial.println("inttx");
     Serial.println(inttx);
-    if (inttx >= 25)
+
+   
+    if(inttx <=23)
     {
-      
+      u8g.drawStr(77, 10, "-OK" );
+    }
+    if(inttx ==24)
+    {
+      u8g.drawStr(77, 10, "-WARN" );
+     tone(buzzer, 600); // Send 1KHz sound signal...
+      delay(20);        
+      noTone(buzzer);     // Stop sound...
+      delay(20);  
+    }
+    if(inttx >=25)
+    {
+            
       tone(buzzer, 1200); // Send 1KHz sound signal...
       delay(200);        
       noTone(buzzer);     // Stop sound...
@@ -104,10 +118,12 @@ void tempcheck(void){
         Serial.println("loop hit set rlow");     
         digitalWrite(RELAY_PIN0, LOW);
       }
+      u8g.drawStr(77, 10, "-CRIT" );
     }
     // if able to cool down below set amount, will clear time/count check else if it hovers between max and slightly under will continue to count up till cutoff
-    else if (inttx >= 22 && inttx <23)
+    if (inttx >= 22 && inttx <23)
     {
+        
       digitalWrite(RELAY_PIN0, HIGH);
       Serial.println("lc cleared");
       loopcheck = 0;
