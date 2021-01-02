@@ -8,6 +8,7 @@ Pump L/H - This measures liters per hour based on a hall effects sensor. If it m
 
 Air Assist - this makes sure air assist it on. If it is not on it sounds alarm and opens interlock 
 Air extraction - this measures the pressure difference to tell if the extraction is running or not. If no pressure difference after set amount of time it will alarm but not open any interlocks 
+
 Safety - This checks to make sure all interlocks are functional and closed before it allows the laser to fire, if not buzzer and display via screens 
 
 This uses a set of 4 relays (not technically needed could use one) but wold require someone to change the code
